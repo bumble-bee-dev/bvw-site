@@ -1,0 +1,47 @@
+---
+
+const {
+    title = 'Ballater Victoria Week',
+    description = 'WIP Website for Ballater Victoria Week',
+    keywords = 'Ballater Victoria Week',
+} = Astro.props
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg"/>
+    <title>BVW - {title}</title>
+    <meta name="keywords" content={keywords}>
+    <meta name="description" content={description}>
+</head>
+<body>
+<slot />
+</body>
+</html>
+
+<style>
+    html,
+    body {
+        --bvw-dark-purple: #201830;
+        --bvw-purple: #4d2b87;
+        --bvw-light-purple: #9c8ab6;
+        --bvw-light-yellow: #eee38b;
+        --bvw-yellow: #e8c70d;
+
+
+        --off-white: #EFF0F7;
+        --white: #FFFFFF;
+        --black: #000000;
+
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+
+        background-color: var(--off-white);
+    }
+</style>

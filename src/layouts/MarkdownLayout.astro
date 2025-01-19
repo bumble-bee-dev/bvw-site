@@ -1,0 +1,15 @@
+---
+import DefaultLayout from './DefaultLayout.astro'
+import { format } from 'date-fns';
+const { frontmatter } = Astro.props
+---
+
+<DefaultLayout title={frontmatter.title}>
+  <div>
+    <h1>{frontmatter.title}</h1>
+    <div>
+      <p>{format(new Date(frontmatter.startTime), 'E do h:mma')}</p>  <p>{frontmatter.location}</p> <p>{frontmatter.price}</p>
+    </div>
+    <slot />
+  </div>
+</DefaultLayout>
