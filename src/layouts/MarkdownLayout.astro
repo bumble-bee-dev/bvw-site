@@ -1,15 +1,51 @@
 ---
 import DefaultLayout from './DefaultLayout.astro'
-import { format } from 'date-fns';
-const { frontmatter } = Astro.props
+import {format} from 'date-fns';
+const {frontmatter} = Astro.props
 ---
 
 <DefaultLayout title={frontmatter.title}>
-  <div>
-    <h1>{frontmatter.title}</h1>
-    <div>
-      <p>{format(new Date(frontmatter.startTime), 'E do h:mma')}</p>  <p>{frontmatter.location}</p> <p>{frontmatter.price}</p>
+    <div class="contentPane">
+        <h1>{frontmatter.title}</h1>
+        <div class="eventDetails">
+            <div class="eventParam"><h3>Start time: </h3>
+                <p>{format(new Date(frontmatter.startTime), 'E do h:mma')}</p></div>
+            <div class="eventParam"><h3>Location: </h3>
+                <p>{frontmatter.location}</p></div>
+            <div class="eventParam"><h3>Price: </h3>
+                <p>{frontmatter.price}</p></div>
+        </div>
+        <br/>
+        <slot/>
+
     </div>
-    <slot />
-  </div>
 </DefaultLayout>
+
+<style>
+    .contentPane {
+        margin: 2%;
+    }
+
+    .eventDetails {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .eventParam {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    h3, p {
+        margin: 0;
+    }
+
+    @media (max-width: 700px) {
+        .eventParam {
+            flex-direction: column;
+            margin: 0;
+        }
+    }
+</style>

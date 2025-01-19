@@ -1,29 +1,33 @@
 ---
-
+import Header from "../components/Header.astro";
 const {
     title = 'Ballater Victoria Week',
     description = 'WIP Website for Ballater Victoria Week',
     keywords = 'Ballater Victoria Week',
 } = Astro.props
 ---
+
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg"/>
     <title>BVW - {title}</title>
     <meta name="keywords" content={keywords}>
     <meta name="description" content={description}>
 </head>
+
 <body>
-<slot />
+<Header/>
+<slot/>
 </body>
+
 </html>
 
 <style>
-    html,
-    body {
+    :root {
         --bvw-dark-purple: #201830;
         --bvw-purple: #4d2b87;
         --bvw-light-purple: #9c8ab6;
@@ -35,13 +39,21 @@ const {
         --white: #FFFFFF;
         --black: #000000;
 
-        margin: 0;
-        width: 100%;
-        height: 100%;
+
         font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
         "Segoe UI Symbol";
 
+
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        width: 100vw;
+        height: 100%;
         background-color: var(--off-white);
     }
+
 </style>
