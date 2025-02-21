@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import Header from "../components/Header.astro";
 const {
     title = 'Ballater Victoria Week',
@@ -25,35 +26,3 @@ const {
 </body>
 
 </html>
-
-<style>
-    :root {
-        --bvw-dark-purple: #201830;
-        --bvw-purple: #4d2b87;
-        --bvw-light-purple: #9c8ab6;
-        --bvw-light-yellow: #eee38b;
-        --bvw-yellow: #e8c70d;
-
-
-        --off-white: #EFF0F7;
-        --white: #FFFFFF;
-        --black: #000000;
-
-
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-        "Segoe UI Symbol";
-
-
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        width: 100vw;
-        height: 100%;
-        background-color: var(--off-white);
-    }
-
-</style>

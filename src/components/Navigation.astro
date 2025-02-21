@@ -1,0 +1,15 @@
+---
+const isDev = import.meta.env.DEV;
+const basePath = isDev ? "/bvw-site" : ""
+---
+
+<div class="nav-links">
+    <a href={`${basePath}/`}>Home</a>
+    <a href={`${basePath}/news/`}>News</a>
+    <a href={`${basePath}/events`}>Events</a>
+    <a href={`${basePath}/parade/`}>Parade</a>
+    <a href={`${basePath}/scarecrows/`}>Scarecrows</a>
+    <a href={`${basePath}/events/DuckRace/`}>Ducks</a>
+    <a href={`${basePath}/contactUs/`}>Contact Us</a>
+</div>
+
