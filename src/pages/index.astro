@@ -1,7 +1,55 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro';
+import EventBox from "../components/EventBox.astro";
+import {getCollection} from "astro:content";
 
+const allEvents = await getCollection("events");
 ---
+
 <DefaultLayout>
-    <h1>THIS IS THE TEST SITE FOR BALLATER VICTORIA WEEK</h1>
-</DefaultLayout>
+
+    <h1 style="text-align: center">THIS IS THE TEST SITE FOR BALLATER VICTORIA WEEK</h1>
+
+    <div class="eventContainer">
+        {allEvents.map((event: any) => <EventBox eventId={event.id}/> )}
+
+        <EventBox eventId={"loremipsum"}/>
+        <EventBox eventId={"loremipsum"}/>
+        <EventBox eventId={"loremipsum"}/>
+        <EventBox eventId={"loremipsum"}/>
+        <EventBox eventId={"loremipsum"}/>
+
+     </div>
+
+ </DefaultLayout>
+
+ <style>
+ .eventContainer {
+     display: grid;
+     margin: 1rem 2rem 1rem 1rem;
+     grid-template-columns: 1fr;
+     gap: 3rem;
+ }
+
+ @media screen and (min-width: 45rem) {
+     .eventContainer {
+         grid-template-columns: 1fr 1fr;
+     }
+ }
+ @media screen and (min-width: 70rem) {
+     .eventContainer {
+         grid-template-columns: 1fr 1fr 1fr;
+     }
+ }
+ @media screen and (min-width: 95rem) {
+     .eventContainer {
+         grid-template-columns: 1fr 1fr 1fr 1fr;
+     }
+ }
+ @media screen and (min-width: 120rem) {
+     .eventContainer {
+         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+     }
+ }
+
+ </style>

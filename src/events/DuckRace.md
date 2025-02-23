@@ -1,11 +1,12 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
 title: The Duck Race
-startTime: 2025-08-17T13:00:00
-endTime: 2025-08-17T14:00:00
+start: 2025-08-17T13:00:00
+end: 2025-08-17T14:00:00
 location: green
 price: £3 per ticket
 runBy: BVWteam
+tags: ["event", "ducks"]
 ---
 The Ballater Victoria Week Duck Race is the only duck race where 1,440 racing  ducks are blasted across the village green on a makeshift river created by members of the Scottish Fire and Rescue Service.
 This year it takes place on Sunday 17th August at 1pm.

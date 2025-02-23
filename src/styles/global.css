@@ -15,11 +15,15 @@
 
     --primary-main-colour: var(--off-white);
     --secondary-main-colour: var(--bvw-dark-purple);
+    --primary-accent-colour: var(--bvw-purple);
+    --secondary-accent-colour: var(--bvw-light-yellow);
 }
 
 .dark {
     --primary-main-colour: var(--bvw-dark-purple);
     --secondary-main-colour: var(--off-white);
+    --primary-accent-colour: var(--bvw-light-yellow);
+    --secondary-accent-colour: var(--bvw-light-purple);
 }
 
 html, body {

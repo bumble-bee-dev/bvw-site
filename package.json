@@ -9,8 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.1.7",
     "accessible-astro-components": "^3.0.1",
+    "astro": "^5.1.7",
     "date-fns": "^3.3.1"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.85.0"
   }
 }

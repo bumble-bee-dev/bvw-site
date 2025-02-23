@@ -1,11 +1,12 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
 title: Ballater Highland Games
-startTime: 2025-08-14T10:00:00
-endTime: 2025-08-14T22:30:00
+start: 2025-08-14T10:00:00
+end: 2025-08-14T22:30:00
 location: "Monaltrie Park"
 price: £10/£3
 runBy: gamesCommittee
+tags: ["event", "games"]
 ---
 You are invited to join the traditional Highland Games this year on Thursday 14th August in Monaltrie Park in the village.
 Known as the Friendly Games on Royal Deeside for good reason, and you can be assured of a warm welcome.
