@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+import EventBox from "../../components/EventBox.astro";
+
+export async function getStaticPaths() {
+    const allEvents = await getCollection('events');
+    return allEvents.map(event => ({
+        params: { slug: event.id }, props: { event },
+    }));
+}
+
+const { event } = Astro.props;
+---
+<DefaultLayout>
+    <div class="eventInformation">
+    <EventBox eventId={event.id}></EventBox>
+    </div>
+
+</DefaultLayout>
+
+<style>
+    .eventInformation {
+        width: 90%;
+        margin: 3rem auto auto;
+    }
+</style>

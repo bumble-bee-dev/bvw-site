@@ -8,7 +8,7 @@ price: £5pp
 runBy: BVWteam
 tags: ["event", "ade", "quiz"]
 ---
-Test your skills and knowlege in Ade’s quiz. Taking
+Test your skills and knowledge in Ade’s quiz. Taking
 inspirations from Quiz demigod Richard Osman and other TV Challenges, it will be a fun evening for everybody!
 Licenced bar only, No BYOB.
 For more info and to book go to [www.visitballater.com/events](https://www.visitballater.com/events)

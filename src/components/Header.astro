@@ -2,10 +2,13 @@
 import Navigation from "./Navigation.astro";
 import DarkmodeToggle from "./DarkmodeToggle.astro";
 import Hamburger from './Hamburger.astro';
+
+const isDev = import.meta.env.DEV;
+const basePath = isDev ? "/bvw-site" : ""
 ---
 
 <header>
-    <h1 class="headerTitle">Ballater Victoria Week</h1>
+    <h1 class="headerTitle"><a href={`${basePath}/`}>Ballater Victoria Week</a></h1>
 
     <div class="headerToggles">
         <DarkmodeToggle/>
@@ -15,11 +18,16 @@ import Hamburger from './Hamburger.astro';
 
         <Hamburger/>
     </div>
-
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('expanded');
+        });
+    </script>
 </header>
 
-<script>
-    document.querySelector('.hamburger').addEventListener('click', () => {
-        document.querySelector('.nav-links').classList.toggle('expanded');
-    });
-</script>
+<style>
+    .headerTitle > a {
+        text-decoration: none;
+        color: var(--primary-main-colour)
+    }
+</style>

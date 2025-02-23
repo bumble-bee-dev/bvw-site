@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
 title: Lorem Ipsum
-start: 2025-08-09T13:00:00
-end: 2025-08-09T14:00:00
+start: 2025-08-10T13:00:00
+end: 2025-08-10T14:00:00
 location: Sit Amet
 price: Dolor
 runBy: BVWteam

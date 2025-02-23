@@ -1,55 +1,65 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro';
-import EventBox from "../components/EventBox.astro";
+import {format} from 'date-fns';
 import {getCollection} from "astro:content";
+import EventGrid from "../components/EventGrid.astro";
 
 const allEvents = await getCollection("events");
+
+const getDaysArray = function (start: Date, end: Date) {
+    const dayArray = [];
+    for (const day = new Date(start); day <= new Date(end); day.setDate(day.getDate() + 1)) {
+        dayArray.push(new Date(day));
+    }
+    return dayArray;
+};
+
+const bvwDates = getDaysArray(new Date("2025-08-09"), new Date("2025-08-17"));
+
+function getEventsOnDay(day: Date) {
+    let eventsOnDay :any[] = [];
+    allEvents.forEach(event => {
+        if (format(event.data.start, 'yyyyMMdd') == format(day, 'yyyyMMdd')) {
+            eventsOnDay.push(event);
+        }
+    })
+    return eventsOnDay;
+}
 ---
 
 <DefaultLayout>
-
     <h1 style="text-align: center">THIS IS THE TEST SITE FOR BALLATER VICTORIA WEEK</h1>
+    <div id='eventsByDays'>
+        {bvwDates.map((day: any) =>
+                <h1 class="eventDay">{format(day, 'E do')}</h1>
 
-    <div class="eventContainer">
-        {allEvents.map((event: any) => <EventBox eventId={event.id}/> )}
+                <EventGrid gridId={format(day, 'Edo')} eventList={getEventsOnDay(day)}/>
+        )}
+    </div>
+    <!-- <EventGrid gridId="aaa" eventList={allEvents}/> -->
+    <script>
+        function recalculateReadMoreButtons() {
+            const eventBoxes = document.getElementsByClassName("eventBox")
+            for (let eventBox of eventBoxes) {
+                const eventText = eventBox.getElementsByClassName("eventText")[0] as HTMLElement;
+                const readMore = eventBox.getElementsByClassName("readMore")[0] as HTMLElement;
+                const eventTextIsOverflowing = eventText.scrollHeight > eventText.clientHeight;
+                readMore.hidden = !eventTextIsOverflowing;
+            }
+        }
+        window.addEventListener('resize', recalculateReadMoreButtons);
+        recalculateReadMoreButtons()
+    </script>
+</DefaultLayout>
 
-        <EventBox eventId={"loremipsum"}/>
-        <EventBox eventId={"loremipsum"}/>
-        <EventBox eventId={"loremipsum"}/>
-        <EventBox eventId={"loremipsum"}/>
-        <EventBox eventId={"loremipsum"}/>
+<style>
+    .eventDay {
+        text-align: center;
+    }
 
-     </div>
+    #eventsByDays {
+        display: flex;
+        flex-direction: column;
+    }
 
- </DefaultLayout>
-
- <style>
- .eventContainer {
-     display: grid;
-     margin: 1rem 2rem 1rem 1rem;
-     grid-template-columns: 1fr;
-     gap: 3rem;
- }
-
- @media screen and (min-width: 45rem) {
-     .eventContainer {
-         grid-template-columns: 1fr 1fr;
-     }
- }
- @media screen and (min-width: 70rem) {
-     .eventContainer {
-         grid-template-columns: 1fr 1fr 1fr;
-     }
- }
- @media screen and (min-width: 95rem) {
-     .eventContainer {
-         grid-template-columns: 1fr 1fr 1fr 1fr;
-     }
- }
- @media screen and (min-width: 120rem) {
-     .eventContainer {
-         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-     }
- }
-
- </style>
+</style>

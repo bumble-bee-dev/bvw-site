@@ -1,0 +1,27 @@
+---
+import EventBox from "./EventBox.astro";
+const {gridId, eventList} = Astro.props;
+---
+
+<div id={gridId} class="eventContainer">
+    { eventList.map((event: any) =>
+            <EventBox gridId={gridId} eventId={event.id}/>
+    )}
+</div>
+
+<style>
+    .eventContainer {
+        display: grid;
+        margin: 1rem 2rem 1rem 1rem;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    @media screen and (min-width: 30rem) {
+        .eventContainer {
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+        }
+    }
+
+
+</style>
