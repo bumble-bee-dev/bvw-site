@@ -8,7 +8,15 @@ const basePath = isDev ? "/bvw-site" : ""
 if (!event || !event.rendered) {
     throw Error("No event found for eventId: " + eventId);
 }
-const eventBoxId = gridId + "-" + event.id;
+let eventBoxId
+let lineClamp
+if (gridId) {
+    eventBoxId = gridId + "-" + event.id;
+    lineClamp = "8";
+} else {
+    eventBoxId = "SOLO-" + event.id;
+    lineClamp = "none";
+}
 ---
 
 <div class="eventBox" id={eventBoxId}>
@@ -30,39 +38,31 @@ const eventBoxId = gridId + "-" + event.id;
     <div class="eventText" set:html={event.rendered.html}></div>
 
     <div class="readMoreBox" >
-        <a class="readMore" href="/events" hidden>Read More</a>
+        <a class="readMore" href={`${basePath}/events/${event.id}`} hidden>Read More</a>
     </div>
 
-    <script define:vars={{eventId: eventBoxId}}>
-        function detectIsOverflow(element) {
-            return element.scrollHeight > element.clientHeight
-        }
-        const eventBox = document.getElementById(eventId);
-        const eventText = eventBox.getElementsByClassName("eventText")[0];
-        const readMore = eventBox.getElementsByClassName("readMore")[0];
 
-        const is_content_overflow = detectIsOverflow(eventText);
-
-        readMore.hidden = !is_content_overflow;
-
-        console.log("eventBox: " + eventBox.id + " | is_content_overflow " + is_content_overflow)
-    </script>
 </div>
 
-<style lang="scss">
+<style lang="scss" define:vars={{ lineClamp }}>
   .eventBox {
+    --inside-colour: var(--body-background-colour-alt);
+    --gap-colour: var(--body-background-colour);
+    --drop-shadow-colour: var(--accent-colour);
+    --border-colour: var(--body-text-colour);
+
     container-type: inline-size;
     padding: 1rem;
-    background: var(--primary-main-colour);
+    background: var(--inside-colour);
     border-radius: 1rem;
-    border: 0.2rem solid var(--secondary-main-colour);
-    box-shadow: 0 0 0 0.5rem var(--primary-main-colour), 1.2rem 1.1rem 0 0 var(--primary-accent-colour);
+    border: 0.2rem solid var(--border-colour);
+    box-shadow: 0.6rem 0.55rem 0 0 var(--gap-colour), 1.2rem 1.1rem 0 0 var(--drop-shadow-colour);
   }
 
   .eventText {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: var(--lineClamp);
     overflow: hidden;
   }
 
@@ -83,10 +83,10 @@ const eventBoxId = gridId + "-" + event.id;
 
   a {
     text-decoration: none;
-    color: var(--secondary-main-colour);
+    color: var(--body-text-colour-alt);
   }
   a:hover {
-   color: var(--primary-accent-colour);
+   color: var(--accent-colour);
   }
 
   .readMoreBox {
@@ -96,7 +96,7 @@ const eventBoxId = gridId + "-" + event.id;
 
   .readMore {
     justify-self: right;
-    color: var(--primary-accent-colour);
+    color: var(--accent-colour);
     font-weight: bold;
   }
 
