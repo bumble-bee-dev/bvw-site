@@ -13,14 +13,13 @@ const basePath = isDev ? "/bvw-site" : ""
     <div class="headerToggles">
         <DarkmodeToggle/>
         <p class="headerDate">9th - 17th Aug 2025</p>
-        <Navigation/>
-
-
         <Hamburger/>
+        <Navigation isDesktop="desktop-links"/>
     </div>
+    <Navigation isDesktop="mobile-links"/>
     <script>
         document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('expanded');
+            document.querySelector('.mobile-links').classList.toggle('expanded');
         });
     </script>
 </header>

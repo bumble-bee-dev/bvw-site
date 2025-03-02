@@ -1,13 +1,20 @@
 ---
 import EventBox from "./EventBox.astro";
 const {gridId, eventList} = Astro.props;
+
+let noEvents = "";
+if (!(eventList.length > 0)) {
+    noEvents = "No events planned yet, coming soon";
+}
 ---
 
 <div id={gridId} class="eventContainer">
     { eventList.map((event: any) =>
             <EventBox gridId={gridId} eventId={event.id}/>
     )}
+    <p class="no-events">{noEvents}</p>
 </div>
+
 
 <style>
     .eventContainer {
@@ -23,5 +30,7 @@ const {gridId, eventList} = Astro.props;
         }
     }
 
-
+    .no-events {
+        text-align: center;
+    }
 </style>
